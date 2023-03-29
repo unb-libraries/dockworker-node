@@ -1,0 +1,28 @@
+{
+  "name": "unb-libraries/dockworker-node",
+  "description": "Extends the base dockworker framework to provide additional functionality for NodeJS applications.",
+  "type": "library",
+  "require": {
+    "unb-libraries/dockworker-daemon": "6.x-dev"
+  },
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "UNB Libraries",
+      "email": "libsupport@unb.ca"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Dockworker\\": "src"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}
