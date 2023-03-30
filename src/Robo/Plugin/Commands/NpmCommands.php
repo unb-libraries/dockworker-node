@@ -3,13 +3,14 @@
 namespace Dockworker\Robo\Plugin\Commands;
 
 use Dockworker\Docker\DockerContainerExecTrait;
+use Dockworker\DockworkerDaemonCommands;
 use Dockworker\IO\DockworkerIO;
 use Dockworker\IO\DockworkerIOTrait;
 
 /**
  * Provides commands for running npm in the application's deployed resources.
  */
-class NpmCommands extends DaemonShellCommands
+class NpmCommands extends DockworkerDaemonCommands
 {
   use DockerContainerExecTrait;
   use DockworkerIOTrait;
