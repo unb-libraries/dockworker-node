@@ -96,4 +96,33 @@ class NpmCommands extends DockworkerDaemonCommands
       ]);
   }
 
+  /**
+   * Writes this application's package lockfile back to the repository.
+   *
+   * @option string $env
+   *   The environment to copy the file from.
+   *
+   * @command node:npm:write-lock
+   * @aliases npm-write-lock
+   * @usage --env=prod
+   */
+  public function writePackageLock(
+    array $options = [
+      'env' => 'local'
+    ]
+  ): void
+  {
+    $container = $this->initGetDeployedContainer(
+      $this->dockworkerIO,
+      $options['env']
+    );
+    $this->dockworkerIO->title('Copying Lockfile');
+    $container->copyFrom(
+      $this->dockworkerIO,
+      '/app/package-lock.json',
+      $this->applicationRoot . '/app/package-lock.json'
+    );
+    $this->dockworkerIO->say('Done!');
+  }
+
 }
