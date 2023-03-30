@@ -2,6 +2,7 @@
 
 namespace Dockworker\Robo\Plugin\Commands;
 
+use Dockworker\Core\CommandLauncherTrait;
 use Dockworker\Docker\DockerContainerExecTrait;
 use Dockworker\DockworkerDaemonCommands;
 use Dockworker\IO\DockworkerIO;
@@ -14,6 +15,7 @@ class NpmCommands extends DockworkerDaemonCommands
 {
   use DockerContainerExecTrait;
   use DockworkerIOTrait;
+  use CommandLauncherTrait;
 
   /**
    * Runs a generic npm within this application.
@@ -77,6 +79,21 @@ class NpmCommands extends DockworkerDaemonCommands
         implode(' ', $command)
       )
     );
+  }
+
+  /**
+   * Updates the application and its NPM dependencies.
+   *
+   * @hook post-command dockworker:update
+   */
+  public function executeNpmUpdateCommand(): void
+  {
+    $this->initDockworkerIO();
+    $this->setRunOtherCommand(
+      $this->dockworkerIO, [
+        'npm',
+        'update',
+      ]);
   }
 
 }
