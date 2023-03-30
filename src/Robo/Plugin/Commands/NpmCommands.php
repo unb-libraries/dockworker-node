@@ -97,6 +97,35 @@ class NpmCommands extends DockworkerDaemonCommands
   }
 
   /**
+   * Writes this application's package file back to the repository.
+   *
+   * @option string $env
+   *   The environment to copy the file from.
+   *
+   * @command node:npm:write-package
+   * @aliases npm-write-package
+   * @usage --env=prod
+   */
+  public function writePackage(
+    array $options = [
+      'env' => 'local'
+    ]
+  ): void
+  {
+    $container = $this->initGetDeployedContainer(
+      $this->dockworkerIO,
+      $options['env']
+    );
+    $this->dockworkerIO->title('Copying Package');
+    $container->copyFrom(
+      $this->dockworkerIO,
+      '/app/package.json',
+      $this->applicationRoot . '/app/package.json'
+    );
+    $this->dockworkerIO->say('Done!');
+  }
+
+  /**
    * Writes this application's package lockfile back to the repository.
    *
    * @option string $env
