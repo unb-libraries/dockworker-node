@@ -113,6 +113,31 @@ class NpmCommands extends DockworkerDaemonCommands
   }
 
   /**
+   * Uninstalls the application's NPM dependencies.
+   *
+   * @param CommandData $command_data
+   *   The command data.
+   *
+   * @hook pre-command dockworker:uninstall
+   */
+  public function executeUninstallNpmCommand(CommandData $command_data): void
+  {
+    $this->initDockworkerIO();
+    $args = $command_data->input()->getArguments()['dependencies'];
+
+    $this->setRunOtherCommand(
+      $this->dockworkerIO, [
+        'npm',
+        'uninstall',
+        ...$args,
+      ]
+    );
+
+    $this->setRunOtherCommand($this->dockworkerIO, ['node:npm:write-package']);
+    $this->setRunOtherCommand($this->dockworkerIO, ['node:npm:write-lock']);
+  }
+
+  /**
    * Updates the application and its NPM dependencies.
    *
    * @hook post-command dockworker:update
