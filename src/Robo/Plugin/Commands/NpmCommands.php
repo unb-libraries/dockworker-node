@@ -72,7 +72,7 @@ class NpmCommands extends DockworkerDaemonCommands
       $env,
       array_merge($cmd_base, $command),
       $this->dockworkerIO,
-      'Generating ULI',
+      'Execute',
       sprintf(
         "[%s] Running 'npm %s'...",
         $env,
