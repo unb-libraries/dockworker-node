@@ -151,7 +151,6 @@ class NpmCommands extends DockworkerDaemonCommands
         'update',
       ]);
 
-    $this->setRunOtherCommand($this->dockworkerIO, ['node:npm:write-package']);
     $this->setRunOtherCommand($this->dockworkerIO, ['node:npm:write-lock']);
   }
 
