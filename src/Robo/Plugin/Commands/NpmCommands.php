@@ -2,6 +2,7 @@
 
 namespace Dockworker\Robo\Plugin\Commands;
 
+use Consolidation\AnnotatedCommand\CommandData;
 use Dockworker\Core\CommandLauncherTrait;
 use Dockworker\Docker\DockerContainerExecTrait;
 use Dockworker\DockworkerDaemonCommands;
@@ -78,6 +79,37 @@ class NpmCommands extends DockworkerDaemonCommands
         implode(' ', $command)
       )
     );
+  }
+
+  /**
+   * Installs the application's NPM dependencies.
+   *
+   * @param CommandData $command_data
+   *   The command data.
+   *
+   * @hook pre-command dockworker:install
+   */
+  public function executeNpmInstallCommand(CommandData $command_data): void
+  {
+    $this->initDockworkerIO();
+    $args = $command_data->input()->getArguments()['dependencies'];
+    if ($only = $command_data->input()->getOptions()['only']) {
+      $args = array_merge($args, [
+        "--",
+        "--save-$only"
+      ]);
+    }
+
+    $this->setRunOtherCommand(
+      $this->dockworkerIO, [
+        'npm',
+        'install',
+        ...$args,
+      ]
+    );
+
+    $this->setRunOtherCommand($this->dockworkerIO, ['node:npm:write-package']);
+    $this->setRunOtherCommand($this->dockworkerIO, ['node:npm:write-lock']);
   }
 
   /**
