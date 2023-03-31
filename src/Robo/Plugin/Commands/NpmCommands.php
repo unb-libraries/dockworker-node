@@ -20,7 +20,7 @@ class NpmCommands extends DockworkerDaemonCommands
   /**
    * Runs a generic npm within this application.
    *
-   * @param string $args
+   * @param array $args
    *   The command and arguments to pass to npm.
    * @param string[] $options
    *   An array of options to pass to the command.
@@ -33,16 +33,15 @@ class NpmCommands extends DockworkerDaemonCommands
    * @usage --env=prod -- update
    */
   public function runGenericNpmCommand(
-    string $args,
+    array $args,
     array $options = [
       'env' => 'local',
     ]
   ): void {
-    $args_array = explode(' ', $args);
     $this->executeNpmCommand(
       $this->dockworkerIO,
       $options['env'],
-      $args_array
+      $args
     );
   }
 
