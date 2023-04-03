@@ -38,8 +38,8 @@ class NpmCommands extends DockworkerDaemonCommands
     array $options = [
       'env' => 'local',
     ]
-  ): void {
-    $this->executeNpmCommand(
+  ) {
+    return $this->executeNpmCommand(
       $this->dockworkerIO,
       $options['env'],
       $args
@@ -63,12 +63,12 @@ class NpmCommands extends DockworkerDaemonCommands
     DockworkerIO $io,
     string $env,
     array $command
-  ): void {
+  ) {
     $io->title('NPM');
     $cmd_base = [
       'npm',
     ];
-    $this->executeContainerCommand(
+    return $this->executeContainerCommand(
       $env,
       array_merge($cmd_base, $command),
       $this->dockworkerIO,
@@ -78,7 +78,8 @@ class NpmCommands extends DockworkerDaemonCommands
         $env,
         implode(' ', $command)
       )
-    );
+    )[1]->getExitCode();
+
   }
 
   /**
