@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+ROOT_DIR="$(pwd)/"
+LIST=$( git diff --name-only --cached --diff-filter=ACM )
+
+if [[ "$LIST" == "" ]];
+then
+  echo "No added or modified files in this commit set. Skipping Linting!"
+  exit 0
+fi
+
+DOCKWORKER_BIN="${ROOT_DIR}/vendor/bin/dockworker"
+if [ ! -f $DOCKWORKER_BIN ];
+then
+  echo "Dockworker was not found in this project's bin directory. Please run composer install."
+  exit 1
+fi
+
+echo "Linting source code..."
+${ROOT_DIR}/vendor/bin/dockworker npm run lint
+SNIFF_STATUS=$?
+if [ $SNIFF_STATUS -ne 0 ]; then
+  exec < /dev/tty
+  read -p "ESLint reported one or more errors. Would you still like to continue anyhow? " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Aborting due to failed lint."
+    exit $SNIFF_STATUS
+  fi
+fi
+
+# Return the status of the last run command.
+exit $?
