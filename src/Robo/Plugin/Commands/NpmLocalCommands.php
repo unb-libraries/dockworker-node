@@ -39,4 +39,76 @@ class NpmLocalCommands extends DockworkerDaemonCommands {
     }
   }
 
+  /**
+   * Execute this application's tests.
+   *
+   * @hook post-command test:all
+   */
+  public function runNpmTests(): void
+  {
+    $this->initDockworkerIO();
+    $cmd = $this->executeCliCommand(
+      ['npm', 'run', 'test'],
+      $this->dockworkerIO,
+      null,
+      'Running tests',
+      '',
+      true
+    );
+
+    if ($cmd && $cmd->getExitCode() !== 0) {
+      throw new DockworkerException(
+        $cmd->getErrorOutput()
+          ?: "NPM command failed with exit code {$cmd->getExitCode()}");
+    }
+  }
+
+  /**
+   * Execute this application's unit tests.
+   *
+   * @hook post-command test:unit
+   */
+  public function runNpmUnitTests(): void
+  {
+    $this->initDockworkerIO();
+    $cmd = $this->executeCliCommand(
+      ['npm', 'run', 'test:unit'],
+      $this->dockworkerIO,
+      null,
+      'Running unit tests',
+      '',
+      true
+    );
+
+    if ($cmd && $cmd->getExitCode() !== 0) {
+      throw new DockworkerException(
+        $cmd->getErrorOutput()
+          ?: "NPM command failed with exit code {$cmd->getExitCode()}");
+    }
+  }
+
+  /**
+   * Execute this application's e2e tests.
+   *
+   * @hook post-command test:e2e
+   */
+  public function runNpmE2eTests(): void
+  {
+    $this->initDockworkerIO();
+    $cmd = $this->executeCliCommand(
+      ['npm', 'run', 'test:e2e'],
+      $this->dockworkerIO,
+      null,
+      'Running end-to-end tests',
+      '',
+      true
+    );
+
+    if ($cmd && $cmd->getExitCode() !== 0) {
+      throw new DockworkerException(
+        $cmd->getErrorOutput()
+          ?: "NPM command failed with exit code {$cmd->getExitCode()}");
+    }
+  }
+
 }
