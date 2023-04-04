@@ -6,6 +6,7 @@ use Consolidation\AnnotatedCommand\CommandData;
 use Dockworker\Core\CommandLauncherTrait;
 use Dockworker\Docker\DockerContainerExecTrait;
 use Dockworker\DockworkerDaemonCommands;
+use Dockworker\DockworkerException;
 use Dockworker\IO\DockworkerIO;
 use Dockworker\IO\DockworkerIOTrait;
 
@@ -38,8 +39,8 @@ class NpmCommands extends DockworkerDaemonCommands
     array $options = [
       'env' => 'local',
     ]
-  ) {
-    return $this->executeNpmCommand(
+  ): void {
+    $this->executeNpmCommand(
       $this->dockworkerIO,
       $options['env'],
       $args
@@ -58,17 +59,20 @@ class NpmCommands extends DockworkerDaemonCommands
    *
    * @option string $env
    *   The environment to run the command in.
+   *
+   * @throws \Dockworker\DockworkerException
    */
   protected function executeNpmCommand(
     DockworkerIO $io,
     string $env,
     array $command
-  ) {
+  ): void {
     $io->title('NPM');
     $cmd_base = [
       'npm',
     ];
-    return $this->executeContainerCommand(
+
+    [$container, $cmd] = $this->executeContainerCommand(
       $env,
       array_merge($cmd_base, $command),
       $this->dockworkerIO,
@@ -78,7 +82,13 @@ class NpmCommands extends DockworkerDaemonCommands
         $env,
         implode(' ', $command)
       )
-    )[1]->getExitCode();
+    );
+
+    if ($cmd->getExitCode() !== 0) {
+      throw new DockworkerException(
+        $cmd->getErrorOutput()
+          ?: "NPM command failed with exit code {$cmd->getExitCode()}");
+    }
 
   }
 
