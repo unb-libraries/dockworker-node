@@ -2,6 +2,7 @@
 
 namespace Dockworker\Robo\Plugin\Commands;
 
+use Consolidation\AnnotatedCommand\CommandData;
 use Dockworker\Cli\CliCommandTrait;
 use Dockworker\DockworkerDaemonCommands;
 use Dockworker\DockworkerException;
@@ -92,11 +93,19 @@ class NpmLocalCommands extends DockworkerDaemonCommands {
    *
    * @hook post-command test:e2e
    */
-  public function runNpmE2eTests(): void
+  public function runNpmE2eTests($result, CommandData $command_data): void
   {
     $this->initDockworkerIO();
+
+    $headless = $command_data->input()->getOption('headless');
     $cmd = $this->executeCliCommand(
-      ['npm', 'run', 'test:e2e'],
+      [
+        'npm',
+        'run',
+        !$headless
+          ? 'test:e2e'
+          : 'test:e2e:headless'
+      ],
       $this->dockworkerIO,
       null,
       'Running end-to-end tests',
