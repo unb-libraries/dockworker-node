@@ -3,7 +3,6 @@
 namespace Dockworker\Robo\Plugin\Commands;
 
 use Consolidation\AnnotatedCommand\CommandData;
-use Dockworker\Cli\CliCommand;
 use Dockworker\Core\CommandLauncherTrait;
 use Dockworker\Docker\DockerContainerExecTrait;
 use Dockworker\DockworkerDaemonCommands;
@@ -222,23 +221,6 @@ class NpmCommands extends DockworkerDaemonCommands
       $this->applicationRoot . '/app/package-lock.json'
     );
     $this->dockworkerIO->say('Done!');
-  }
-
-  /**
-   * Lint this application's source code.
-   *
-   * @command node:npm:lint
-   * @aliases npm-lint
-   */
-  public function lint(): void
-  {
-    $cmd = new CliCommand(['npm', 'run', 'lint']);
-    $cmd->runTty($this->dockworkerIO);
-    if ($cmd->getExitCode() !== 0) {
-      throw new DockworkerException(
-        $cmd->getErrorOutput()
-          ?: "NPM command failed with exit code {$cmd->getExitCode()}");
-    }
   }
 
 }
