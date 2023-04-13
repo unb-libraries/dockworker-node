@@ -188,8 +188,8 @@ class NpmCommands extends DockworkerDaemonCommands
     $this->dockworkerIO->title('Copying Package');
     $container->copyFrom(
       $this->dockworkerIO,
-      '/app/package.json',
-      $this->applicationRoot . '/app/package.json'
+      '/app/html/package.json',
+      $this->applicationRoot . '/build/package.json'
     );
     $this->dockworkerIO->say('Done!');
   }
@@ -217,8 +217,8 @@ class NpmCommands extends DockworkerDaemonCommands
     $this->dockworkerIO->title('Copying Lockfile');
     $container->copyFrom(
       $this->dockworkerIO,
-      '/app/package-lock.json',
-      $this->applicationRoot . '/app/package-lock.json'
+      '/app/html/package-lock.json',
+      $this->applicationRoot . '/build/package-lock.json'
     );
     $this->dockworkerIO->say('Done!');
   }
