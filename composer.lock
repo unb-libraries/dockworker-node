@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fcffa3099f7eb85460e1686fc908e15b",
+    "content-hash": "ef5fdd57d4088ad06f5d9deeec7a3273",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -4127,12 +4127,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/unb-libraries/dockworker.git",
-                "reference": "fc85c1e578c71e0c5e29cc4452df3c86ac456515"
+                "reference": "131e7a3efeac4b2e4de7665725085f1a2a20dfce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/unb-libraries/dockworker/zipball/fc85c1e578c71e0c5e29cc4452df3c86ac456515",
-                "reference": "fc85c1e578c71e0c5e29cc4452df3c86ac456515",
+                "url": "https://api.github.com/repos/unb-libraries/dockworker/zipball/131e7a3efeac4b2e4de7665725085f1a2a20dfce",
+                "reference": "131e7a3efeac4b2e4de7665725085f1a2a20dfce",
                 "shasum": ""
             },
             "require": {
@@ -4153,6 +4153,10 @@
                 "php": "^8.1",
                 "symfony/http-client": "^6.2",
                 "twig/twig": "^3"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1",
+                "squizlabs/php_codesniffer": "^3"
             },
             "bin": [
                 "bin/dockworker"
@@ -4178,7 +4182,7 @@
                 "issues": "https://github.com/unb-libraries/dockworker/issues",
                 "source": "https://github.com/unb-libraries/dockworker/tree/6.x"
             },
-            "time": "2023-06-13T14:10:15+00:00"
+            "time": "2023-06-15T17:59:03+00:00"
         },
         {
             "name": "unb-libraries/dockworker-application",
@@ -4186,16 +4190,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/unb-libraries/dockworker-application.git",
-                "reference": "35d75a51e0fe2a6a59a89c85e694eb2a86c780da"
+                "reference": "8ff1efc55d52ddf001e2597ddc1cbdca802e08b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/unb-libraries/dockworker-application/zipball/35d75a51e0fe2a6a59a89c85e694eb2a86c780da",
-                "reference": "35d75a51e0fe2a6a59a89c85e694eb2a86c780da",
+                "url": "https://api.github.com/repos/unb-libraries/dockworker-application/zipball/8ff1efc55d52ddf001e2597ddc1cbdca802e08b8",
+                "reference": "8ff1efc55d52ddf001e2597ddc1cbdca802e08b8",
                 "shasum": ""
             },
             "require": {
                 "unb-libraries/dockworker": "6.x-dev"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1",
+                "squizlabs/php_codesniffer": "^3"
             },
             "default-branch": true,
             "type": "library",
@@ -4219,7 +4227,7 @@
                 "issues": "https://github.com/unb-libraries/dockworker-application/issues",
                 "source": "https://github.com/unb-libraries/dockworker-application/tree/6.x"
             },
-            "time": "2023-06-13T10:58:53+00:00"
+            "time": "2023-06-15T17:16:29+00:00"
         },
         {
             "name": "unb-libraries/dockworker-daemon",
@@ -4227,16 +4235,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/unb-libraries/dockworker-daemon.git",
-                "reference": "b5da34e0cf2ba97eb932535e63f741f7e006dd80"
+                "reference": "50de3dd4391fec2bf0eea267e33f4b122211c597"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/unb-libraries/dockworker-daemon/zipball/b5da34e0cf2ba97eb932535e63f741f7e006dd80",
-                "reference": "b5da34e0cf2ba97eb932535e63f741f7e006dd80",
+                "url": "https://api.github.com/repos/unb-libraries/dockworker-daemon/zipball/50de3dd4391fec2bf0eea267e33f4b122211c597",
+                "reference": "50de3dd4391fec2bf0eea267e33f4b122211c597",
                 "shasum": ""
             },
             "require": {
                 "unb-libraries/dockworker-application": "6.x-dev"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1",
+                "squizlabs/php_codesniffer": "^3"
             },
             "default-branch": true,
             "type": "library",
@@ -4260,10 +4272,130 @@
                 "issues": "https://github.com/unb-libraries/dockworker-daemon/issues",
                 "source": "https://github.com/unb-libraries/dockworker-daemon/tree/6.x"
             },
-            "time": "2023-06-13T11:05:55+00:00"
+            "time": "2023-06-15T17:31:24+00:00"
         }
     ],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "phpstan/phpstan",
+            "version": "1.10.19",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpstan.git",
+                "reference": "af5a296ff02610c1bfb4ddfac9fd4a08657b9046"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/af5a296ff02610c1bfb4ddfac9fd4a08657b9046",
+                "reference": "af5a296ff02610c1bfb4ddfac9fd4a08657b9046",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2|^8.0"
+            },
+            "conflict": {
+                "phpstan/phpstan-shim": "*"
+            },
+            "bin": [
+                "phpstan",
+                "phpstan.phar"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPStan - PHP Static Analysis Tool",
+            "keywords": [
+                "dev",
+                "static analysis"
+            ],
+            "support": {
+                "docs": "https://phpstan.org/user-guide/getting-started",
+                "forum": "https://github.com/phpstan/phpstan/discussions",
+                "issues": "https://github.com/phpstan/phpstan/issues",
+                "security": "https://github.com/phpstan/phpstan/security/policy",
+                "source": "https://github.com/phpstan/phpstan-src"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ondrejmirtes",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/phpstan",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/phpstan/phpstan",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-06-14T15:26:58+00:00"
+        },
+        {
+            "name": "squizlabs/php_codesniffer",
+            "version": "3.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
+                "reference": "ed8e00df0a83aa96acf703f8c2979ff33341f879"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/ed8e00df0a83aa96acf703f8c2979ff33341f879",
+                "reference": "ed8e00df0a83aa96acf703f8c2979ff33341f879",
+                "shasum": ""
+            },
+            "require": {
+                "ext-simplexml": "*",
+                "ext-tokenizer": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
+            },
+            "bin": [
+                "bin/phpcs",
+                "bin/phpcbf"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Sherwood",
+                    "role": "lead"
+                }
+            ],
+            "description": "PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
+            "homepage": "https://github.com/squizlabs/PHP_CodeSniffer",
+            "keywords": [
+                "phpcs",
+                "standards",
+                "static analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/squizlabs/PHP_CodeSniffer/issues",
+                "source": "https://github.com/squizlabs/PHP_CodeSniffer",
+                "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
+            },
+            "time": "2023-02-22T23:07:41+00:00"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
@@ -4273,5 +4405,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

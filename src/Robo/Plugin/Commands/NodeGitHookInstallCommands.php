@@ -7,13 +7,13 @@ namespace Dockworker\Robo\Plugin\Commands;
  */
 class NodeGitHookInstallCommands extends GitHookInstallCommands
 {
-  /**
-   * Sets up the required git hooks for dockworker-node.
-   *
-   * @hook post-command git:setup-hooks
-   */
-  public function setupDrupalGitHooks(): void
-  {
-    $this->copyGitHookFiles('dockworker-node');
-  }
+    /**
+     * Sets up the required git hooks for dockworker-node.
+     *
+     * @hook post-command git:setup-hooks
+     */
+    public function setupDrupalGitHooks(): void
+    {
+        $this->copyGitHookFiles('dockworker-node');
+    }
 }
