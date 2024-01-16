@@ -50,7 +50,7 @@ class NpmLocalCommands extends DockworkerDaemonCommands
     public function lintCommit(): void
     {
         $cmd = $this->executeCliCommand(
-            ['npm', 'run', 'lint', 'commit'],
+            ['npm', 'run', 'lint:commit'],
             $this->dockworkerIO,
             null,
             'Linting committed source code only',
