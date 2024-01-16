@@ -15,7 +15,6 @@ then
   exit 1
 fi
 
-echo "Linting source code..."
 ${ROOT_DIR}/vendor/bin/dockworker npm-lint-commit
 SNIFF_STATUS=$?
 if [ $SNIFF_STATUS -ne 0 ]; then
