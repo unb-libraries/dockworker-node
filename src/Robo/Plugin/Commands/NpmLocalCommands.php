@@ -42,6 +42,31 @@ class NpmLocalCommands extends DockworkerDaemonCommands
     }
 
     /**
+     * Lint this application's source code.
+     *
+     * @command node:npm:lint:commit
+     * @aliases npm-lint-commit
+     */
+    public function lintCommit(): void
+    {
+        $cmd = $this->executeCliCommand(
+            ['npm', 'run', 'lint', 'commit'],
+            $this->dockworkerIO,
+            null,
+            'Linting committed source code only',
+            '',
+            true
+        );
+
+        if ($cmd && $cmd->getExitCode() !== 0) {
+            throw new DockworkerException(
+                $cmd->getErrorOutput()
+                ?: "NPM command failed with exit code {$cmd->getExitCode()}"
+            );
+        }
+    }
+
+    /**
      * Execute this application's tests.
      *
      * @hook post-command test:all
